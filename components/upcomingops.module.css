@@ -1,0 +1,30 @@
+.operationinfo {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  margin: 1em;
+  gap: 1em;
+}
+
+.operationDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.img {
+  border-radius: 15px;
+  aspect-ratio: 16 / 9;
+}
+
+@media only screen and (max-width: 600px) {
+  .img {
+    width: 100%;
+    height: auto;
+  }
+
+  .operationinfo {
+    width: 90%;
+  }
+}
