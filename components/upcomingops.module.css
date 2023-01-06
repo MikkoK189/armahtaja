@@ -7,6 +7,10 @@
   gap: 1em;
 }
 
+.timeInfo {
+  align-self: baseline;
+}
+
 .operationDescription {
   display: flex;
   flex-direction: column;
