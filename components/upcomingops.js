@@ -1,46 +1,32 @@
-import { getOperationDescription } from "../lib/ops";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import style from "./upcomingops.module.css";
+import { Remark } from "react-remark";
 
 export default function UpcomingOperations() {
   const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetch("https://raid-helper.dev/api/v1/event/1059539511094300723")
+    fetch("https://raid-helper.dev/api/v1/event/1059111611333345301")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        (async () => {
-          const a = await getOperationDescription(data.description);
-          setData((prevData) => {
-            return {
-              ...prevData,
-              formattedDescription: a,
-            };
-          });
-        })();
-        setLoading(false);
       });
   }, []);
 
   console.log(JSON.stringify(data, null, 2));
-  if (isLoading) return <p>Loading...</p>;
   if (!data) return <p>No data</p>;
   return (
     <div className={style.operationinfo}>
       <Image
         className={style.img}
         src={data.advancedSettings.image}
-        width={480}
-        height={270}
+        width={1000}
+        height={300}
       />
-      <div
-        className={style.operationDescription}
-        dangerouslySetInnerHTML={{ __html: data.formattedDescription }}
-      />
+      <div className={style.operationDescription}>
+        <Remark>{data.description}</Remark>
+      </div>
     </div>
   );
 }
