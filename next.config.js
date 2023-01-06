@@ -9,6 +9,12 @@ const nextConfig = {
         port: "",
         pathname: "/attachments/**",
       },
+      {
+        protocol: "https",
+        hostname: "raid-helper.dev",
+        port: "",
+        pathname: "/uploads/**",
+      },
     ],
   },
 };
