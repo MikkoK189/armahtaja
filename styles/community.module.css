@@ -1,0 +1,28 @@
+.communityCard {
+    display: flex;
+    background-color: #50577A;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.315);
+    gap: 1em;
+    width: 70%;
+}
+
+.img {
+    width: 300px;
+    height: auto;
+}
+
+.infoContainer {
+    display: flex;
+    padding: 1em 2em 2em 2em;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
