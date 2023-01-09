@@ -15,6 +15,12 @@ const nextConfig = {
         port: "",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "gorillat.fi",
+        port: "",
+        pathname: "/wp-content/**",
+      },
     ],
   },
 };

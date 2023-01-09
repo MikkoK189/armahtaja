@@ -109,9 +109,18 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  position: relative;
 }
 
 .footer {
   padding: 1em;
   font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  background: #474E68;
+  height: 2.5rem;
+  width: 100%;
+  text-align: center;
+  box-shadow: 2px 2px 2px 2px black;
 }
