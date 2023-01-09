@@ -99,7 +99,7 @@ export default function UpcomingOperations({ data }) {
           <div className={style.timeInfo}>
             <div className={style.titleSlot}>
               <h1>{event.title}</h1>
-              <h1><Link href={`/yhteisot/${event.slug}`}>{event.serverName}</Link></h1>
+              <h1><Link className={style.linkSlot} href={`/yhteisot/${event.slug}`}>{event.serverName}</Link></h1>
               </div>
             <p>
               {getOperationDateString(event.startTime)} {getOperationTimeString(event.startTime)}

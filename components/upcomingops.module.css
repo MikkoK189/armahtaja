@@ -33,7 +33,7 @@
   display: flex;
   align-items: space-between;
   justify-content: space-between;
-  color: rgb(150, 222, 255);
+  color: rgb(233, 233, 233);
 }
 
 .timeInfo {
@@ -43,6 +43,14 @@
   align-self: baseline;
   width: 100%;
   color: rgb(233, 233, 233);
+}
+
+.linkSlot {
+  transition: all ease-in-out 0.2s;
+}
+
+.linkSlot:hover {
+  color: #6B728E;
 }
 
 .operationDescription {
