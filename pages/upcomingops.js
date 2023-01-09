@@ -1,27 +1,30 @@
-import { useState, useEffect, useCallback } from "react";
+import Layout from '../components/layout'
+import Head from 'next/head';
 import Image from "next/image";
 import style from "../components/upcomingops.module.css";
 import { Remark } from "react-remark";
 import { getOperationDateString, getOperationTimeString } from "../lib/ops";
 
-const servers = [
-  {
-    serverName: "test",
-    key: process.env.test,
-    serverId: "1060997064290488360",
-  },
-  {
-    serverName: "Arma Gorillat",
-    key: process.env.gorillat,
-    serverId: "705083686931923046",
-  },
-];
+
 
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
     "Cache-Control",
     "public, s-maxage=1800, stale-while-revalidate=3600"
   );
+
+  const servers = [
+    {
+      serverName: "test",
+      key: process.env.test,
+      serverId: "1060997064290488360",
+    },
+    {
+      serverName: "Arma Gorillat",
+      key: process.env.gorillat,
+      serverId: "705083686931923046",
+    },
+  ];
 
   const eventData = [];
   const curTime = new Date();
@@ -47,7 +50,6 @@ export async function getServerSideProps({ req, res }) {
         if (endTime > curTime) {
           event.serverName = server.serverName;
           event.serverId = server.serverId;
-          console.log(event.imageUrl);
           upcomingEvents.push(event);
         }
       });
@@ -61,7 +63,6 @@ export async function getServerSideProps({ req, res }) {
   }
 
   eventData.sort((a, b) => a.startTime - b.startTime);
-  console.log(eventData);
 
   return {
     props: { data: eventData }, // will be passed to the page component as props
@@ -73,9 +74,12 @@ export default function UpcomingOperations({ data }) {
 
   const pageContent = data.map((event) => {
     return (
-      <div className={style.operationinfo}>
+      <div key={event.id} className={style.operationinfo}>
         <div className={style.timeInfo}>
-          <h1>Yhteisö: {event.serverName}</h1>
+          <div className={style.titleSlot}>
+            <h1>{event.title}</h1>
+            <h1>{event.serverName}</h1>
+            </div>
           <p>
             Päivämäärä: {getOperationDateString(event.startTime)} Aika:{" "}
             {getOperationTimeString(event.startTime)}
@@ -102,5 +106,16 @@ export default function UpcomingOperations({ data }) {
 
   console.log(JSON.stringify(data, null, 2));
 
-  return pageContent;
+  return <Layout>
+      <Head>
+        <title>Armahtaja</title>
+        <meta
+          name="description"
+          content="A site for upcoming Arma operations"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+    <div className={style.operationContainer}>{pageContent}</div>
+    </Layout> 
 }
