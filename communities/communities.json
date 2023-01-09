@@ -1,0 +1,18 @@
+[
+    {
+        "slug": "arma-gorillat",
+        "name": "Arma Gorillat",
+        "description": "Olemme Arma Gorillat. Kasvava yhteisö jonka päätarkoituksena on tarjota paikka pelata Arma 3:sta rennosti porukalla. Pidämme tärkeänä että porukkaan on helppo liittyä, ja että kaikilla on joka pelikerralla hauskaa. Porukan ikäraja on 18, suurin osa porukasta on haarukalla 18-35.",
+        "joiningInstruction": "https://gorillat.fi/",
+        "serverId": "705083686931923046",
+        "logoUrl": "https://gorillat.fi/wp-content/uploads/2021/08/cropped-armagorillat512.png"
+    },
+    {
+        "slug": "vresk",
+        "name": "Virtuaalireservijoukot",
+        "description": "Virtuaalireservijoukot [VRESK] on yhteisö :D",
+        "joiningInstruction": "Liity jotenkin",
+        "serverId": "798932523907547157",
+        "logoUrl": ""
+    }
+]

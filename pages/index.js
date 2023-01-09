@@ -2,6 +2,7 @@ import Layout from '../components/layout'
 import Head from 'next/head';
 import Image from "next/image";
 import style from "../components/upcomingops.module.css";
+import Link from 'next/link';
 import { Remark } from "react-remark";
 import { getOperationDateString, getOperationTimeString } from "../lib/ops";
 
@@ -18,11 +19,13 @@ export async function getServerSideProps({ req, res }) {
       serverName: "test",
       key: process.env.test,
       serverId: "1060997064290488360",
+      slug: "test",
     },
     {
       serverName: "Arma Gorillat",
       key: process.env.gorillat,
       serverId: "705083686931923046",
+      slug: "arma-gorillat",
     },
   ];
 
@@ -55,6 +58,7 @@ export async function getServerSideProps({ req, res }) {
 
         event.serverName = server.serverName;
         event.serverId = server.serverId;
+        event.slug = server.slug;
         upcomingEvents.push(event);
 
       });
@@ -95,7 +99,7 @@ export default function UpcomingOperations({ data }) {
           <div className={style.timeInfo}>
             <div className={style.titleSlot}>
               <h1>{event.title}</h1>
-              <h1>{event.serverName}</h1>
+              <h1><Link href={`/yhteisot/${event.slug}`}>{event.serverName}</Link></h1>
               </div>
             <p>
               {getOperationDateString(event.startTime)} {getOperationTimeString(event.startTime)}
@@ -110,7 +114,6 @@ export default function UpcomingOperations({ data }) {
     );
   });
 
-  console.log(JSON.stringify(data, null, 2));
 
   return <Layout>
       <Head>

@@ -36,7 +36,6 @@ export default async function handler(req, res) {
         if (endTime > curTime) {
           event.serverName = server.serverName;
           event.serverId = server.serverId;
-          console.log(event.imageUrl);
           upcomingEvents.push(event);
         }
       });
