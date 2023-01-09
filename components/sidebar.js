@@ -34,6 +34,7 @@ export default function Sidebar(props) {
     const siteContent = data.map((communityData) => {
       return (
         <Link
+          key={communityData.serverId}
           className={
             currentPage?.community === communityData.slug
               ? sidebarStyle.activeListItem
@@ -55,6 +56,7 @@ export default function Sidebar(props) {
     const filters = data.map((communityData) => {
       return (
         <button
+          key={communityData.serverId}
           className={
             activeFilters.includes(communityData.slug)
               ? `${sidebarStyle.filter} ${sidebarStyle.active}`
