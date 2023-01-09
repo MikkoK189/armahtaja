@@ -26,7 +26,10 @@ export default function Layout({ children }) {
     return (
     <div className="layout">
       <div className="bgOverlay" />
-      <Image className="bgImage" src={randomBg} width={1920} height={1080} alt="lol"/>
+      <div className="bgImage" style={{ 
+      backgroundImage: `url(${randomBg})` 
+    }}/>
+      {/* <Image className="bgImage" src={randomBg} width={1920} height={1080} alt="lol"/> */}
       
       {children}
       <footer className="footer">Haluatko yhteisösi mukaan listaukseen? Ota yhteys MikkoK#8632 Discordissa.</footer>
