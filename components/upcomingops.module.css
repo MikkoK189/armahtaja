@@ -32,6 +32,7 @@
   display: flex;
   align-items: space-between;
   justify-content: space-between;
+  color: rgb(150, 222, 255);
 }
 
 .timeInfo {
@@ -40,6 +41,7 @@
   gap: 5px;
   align-self: baseline;
   width: 100%;
+  color: rgb(233, 233, 233);
 }
 
 .operationDescription {
