@@ -1,12 +1,11 @@
-import Layout from '../components/layout'
-import Head from 'next/head';
+import Layout from "../components/layout";
+import Head from "next/head";
 import Image from "next/image";
 import style from "../components/upcomingops.module.css";
-import Link from 'next/link';
+import Link from "next/link";
 import { Remark } from "react-remark";
 import { getOperationDateString, getOperationTimeString } from "../lib/ops";
-
-
+import { useState } from "react";
 
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
@@ -60,7 +59,6 @@ export async function getServerSideProps({ req, res }) {
         event.serverId = server.serverId;
         event.slug = server.slug;
         upcomingEvents.push(event);
-
       });
     }
 
@@ -79,43 +77,70 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function UpcomingOperations({ data }) {
+  const [filters, setFilters] = useState([]);
+
   if (!data) return <p>No data</p>;
 
-  const pageContent = data.map((event) => {
-    return (
-      <div key={event.id} className={style.operationinfo}>
-        {event.imageUrl ? (
-          <Image
-            className={style.img}
-            src={event.imageUrl}
-            alt="Operation image"
-            width={1000}
-            height={300}
-          />
-        ) : (
-          ""
-        )}
-        <div className={style.infoContainer}>
-          <div className={style.timeInfo}>
-            <div className={style.titleSlot}>
-              <h1>{event.title}</h1>
-              <h1><Link className={style.linkSlot} href={`/yhteisot/${event.slug}`}>{event.serverName}</Link></h1>
-              </div>
-            <p>
-              {getOperationDateString(event.startTime)} {getOperationTimeString(event.startTime)}
-            </p>
-          </div>
+  const applyFilters = function (filter) {
+    console.log(filters);
+    if (filters.includes(filter)) {
+      const idx = filters.indexOf(filter);
 
-          <div className={style.operationDescription}>
-            <Remark>{event.description}</Remark>
+      setFilters((prevState, newState) => {
+        return [...prevState.slice(0, idx), ...prevState.slice(idx + 1)];
+      });
+    } else {
+      setFilters((prevState, newState) => {
+        return [...prevState, filter];
+      });
+    }
+  };
+
+  const pageContent = data.map((event) => {
+    if (!filters.length || filters.includes(event.slug)) {
+      return (
+        <div key={event.id} className={style.operationinfo}>
+          {event.imageUrl ? (
+            <Image
+              className={style.img}
+              src={event.imageUrl}
+              alt="Operation image"
+              width={1000}
+              height={300}
+            />
+          ) : (
+            ""
+          )}
+          <div className={style.infoContainer}>
+            <div className={style.timeInfo}>
+              <div className={style.titleSlot}>
+                <h1>{event.title}</h1>
+                <h1>
+                  <Link
+                    className={style.linkSlot}
+                    href={`/yhteisot/${event.slug}`}
+                  >
+                    {event.serverName}
+                  </Link>
+                </h1>
+              </div>
+              <p>
+                {getOperationDateString(event.startTime)}{" "}
+                {getOperationTimeString(event.startTime)}
+              </p>
+            </div>
+
+            <div className={style.operationDescription}>
+              <Remark>{event.description}</Remark>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   });
 
-
-  return <Layout>
+  return (
+    <Layout home={true} filterFunction={applyFilters} activeFilters={filters}>
       <Head>
         <title>Armahtaja</title>
         <meta
@@ -125,6 +150,7 @@ export default function UpcomingOperations({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <div className={style.operationContainer}>{pageContent}</div>
-    </Layout> 
+      <div className={style.operationContainer}>{pageContent}</div>
+    </Layout>
+  );
 }
