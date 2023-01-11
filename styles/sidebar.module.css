@@ -11,6 +11,11 @@
   height: auto;
 }
 
+.activeListItem img {
+  width: 30px;
+  height: auto;
+}
+
 .activeListItem {
   display: flex;
   gap: 10px;
