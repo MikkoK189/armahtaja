@@ -4,6 +4,7 @@ import style from "../components/upcomingops.module.css";
 import { useState } from "react";
 import Event from "../components/event";
 import { getEventData } from "../lib/eventData";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
@@ -20,6 +21,10 @@ export async function getServerSideProps({ req, res }) {
 
 export default function UpcomingOperations({ data }) {
   const [filters, setFilters] = useState([]);
+
+  const curTime = new Date();
+  const router = useRouter();
+  const parameters = router.query;
 
   if (!data) return <p>No data</p>;
 
@@ -38,10 +43,11 @@ export default function UpcomingOperations({ data }) {
   };
 
   const pageContent = data.map((event) => {
+    const endTime = new Date(event.endTime * 1000);
+    if (endTime < curTime && parameters?.history !== "1") return "";
+
     if (!filters.length || filters.includes(event.slug)) {
-      return (
-        <Event key={event.id} event={event} />
-      );
+      return <Event key={event.id} event={event} />;
     }
   });
 
