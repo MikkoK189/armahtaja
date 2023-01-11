@@ -9,7 +9,6 @@ export default function Sidebar(props) {
 
   const currentPage = useRouter().query;
   const activeFilters = props.activeFilters || [];
-  console.log(activeFilters);
 
   useEffect(() => {
     // declare the async data fetching function
