@@ -51,30 +51,19 @@
 .filter :hover {
   cursor: pointer;
   border: 2px solid #95a000;
-  border-radius: 9999px;
 }
 
 .filter img {
   width: 30px;
   height: auto;
+  border: 2px solid #00000000;
+  border-radius: 9999px;
 }
 
 .filter.active img {
   border: 2px solid #2da000;
   border-radius: 9999px;
 }
-
-/* .activeFilter {
-  background-color: rgba(255, 255, 255, 0);
-  border: 2px solid #2da000;
-  border-radius: 9999px;
-}
-
-.activeFilter :hover {
-  cursor: pointer;
-  border: 2px solid #a00000;
-  border-radius: 9999px;
-} */
 
 .sidebar {
   display: flex;
