@@ -1,42 +1,41 @@
 .communityCard {
-    display: flex;
-    background-color: #50577A;
-    padding: 2em;
-    border-radius: 15px;
-    box-shadow: 2px 2px rgba(0, 0, 0, 0.315);
-    gap: 1em;
-    width: 70%;
+  display: flex;
+  background-color: #50577a;
+  padding: 2em;
+  border-radius: 15px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.315);
+  gap: 1em;
+  width: 70%;
 }
 
 .img {
-    height: 20%;
-    width: auto;
+  height: 400px;
+  width: auto;
 }
 
 .infoContainer {
-    display: flex;
-    padding: 1em 2em 2em 2em;
-    flex-direction: column;
-    gap: 1em;
-    justify-content: space-between;
+  display: flex;
+  padding: 1em 2em 2em 2em;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: space-between;
 }
 
 .title {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
 }
 
 @media only screen and (max-width: 600px) {
-    .communityCard {
-        flex-direction: column;
-        width: 90%;
-        margin-top: 1em;
-        margin-bottom: 4em;
-    }
-
-    .infoContainer {
-        padding: 0;
-    }
+  .communityCard {
+    flex-direction: column;
+    width: 90%;
+    margin-top: 1em;
+    margin-bottom: 4em;
   }
-  
+
+  .infoContainer {
+    padding: 0;
+  }
+}
