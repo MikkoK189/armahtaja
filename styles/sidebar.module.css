@@ -77,7 +77,7 @@
   background-color: #50577a;
   padding: 0.75em;
   border-radius: 5px;
-  box-shadow: 3px 3px #191b24b2;
+  box-shadow: 3px 3px 3px 3px #191b24b2;
 }
 
 .linksContainer {

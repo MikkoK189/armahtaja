@@ -15,9 +15,9 @@
   align-items: center;
   margin: 1em;
   /* background-color: #50577A; */
-  background-color: #50577A;
+  background-color: #50577a;
   border-radius: 10px;
-  box-shadow: 3px 3px #191b2441;
+  box-shadow: 3px 3px 3px 3px #191b24d7;
 }
 
 .infoContainer {
@@ -50,7 +50,7 @@
 }
 
 .linkSlot:hover {
-  color: #6B728E;
+  color: #6b728e;
 }
 
 .operationDescription {
