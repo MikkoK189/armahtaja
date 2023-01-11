@@ -13,15 +13,15 @@ export async function getServerSideProps({ req, res }) {
   const servers = [
     {
       serverName: "test",
-      key: process.env.test,
+      key: process.env["test"],
       serverId: "1060997064290488360",
       slug: "test",
     },
     {
       serverName: "Arma Gorillat",
-      key: process.env.gorillat,
+      key: process.env["gorillat"],
       serverId: "705083686931923046",
-      slug: "arma-gorillat",
+      slug: "gorillat",
     },
   ];
 
