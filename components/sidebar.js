@@ -76,8 +76,8 @@ export default function Sidebar(props) {
     });
 
     return (
-      <div className={sidebarStyle.sidebar}>
-        <div className={sidebarStyle.linksContainer}>
+      <aside className={sidebarStyle.sidebar}>
+        <nav className={sidebarStyle.linksContainer}>
           {!props.home ? (
             <div className={sidebarStyle.listItem}>
               <Link href={"/"}>
@@ -87,18 +87,18 @@ export default function Sidebar(props) {
           ) : (
             ""
           )}
-          <h3>Yhteisöt:</h3>
+          <h2>Yhteisöt:</h2>
           {siteContent}
-        </div>
+        </nav>
         {props.home ? (
           <div className={sidebarStyle.filterContainer}>
-            <h3>Suodattimet:</h3>
+            <h2>Suodattimet:</h2>
             <div className={sidebarStyle.filters}>{filters}</div>
           </div>
         ) : (
           ""
         )}
-      </div>
+      </aside>
     );
   }
 }

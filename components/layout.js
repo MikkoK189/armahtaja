@@ -31,15 +31,10 @@ export default function Layout({
     const randomBg =
       data.directory[Math.floor(Math.random() * data.directory.length)];
     return (
-      <div className="layout">
-        <div className="bgOverlay" />
-        <div
-          className="bgImage"
-          style={{
-            backgroundImage: `url(${randomBg})`,
-          }}
-        />
-        {/* <Image className="bgImage" src={randomBg} width={1920} height={1080} alt="lol"/> */}
+      <div className="layout" 
+      style={{
+        backgroundImage: `url(${randomBg})`,
+      }}>
         <Sidebar
           home={home}
           filterFunction={filterFunction}

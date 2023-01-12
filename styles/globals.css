@@ -106,28 +106,33 @@ a {
 }
 
 .layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 8fr 1fr;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   min-height: 100vh;
   min-width: 100vw;
-  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  background-color: #0000007a;
 }
 
 .footer {
   padding: 1em;
   font-size: 14px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  background: #474e688a;
+  background: #474e68;
   height: 2.5rem;
   width: 100%;
   text-align: center;
   box-shadow: 2px 2px 2px 2px rgb(0, 0, 0);
 }
 
-.bgOverlay {
+/* .bgOverlay {
   position: fixed;
   top: 0;
   width: 100vw;
@@ -145,7 +150,7 @@ a {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-}
+} */
 
 @media only screen and (max-width: 600px) {
   .footer {

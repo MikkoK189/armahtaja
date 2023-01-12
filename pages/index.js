@@ -62,7 +62,7 @@ export default function UpcomingOperations({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={style.operationContainer}>{pageContent}</div>
+      <main className={style.operationContainer}>{pageContent}</main>
     </Layout>
   );
 }

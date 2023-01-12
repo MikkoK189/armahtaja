@@ -54,7 +54,7 @@
 }
 
 .filter img {
-  width: 30px;
+  width: 36px;
   height: auto;
   border: 2px solid #00000000;
   border-radius: 9999px;
@@ -66,18 +66,18 @@
 }
 
 .sidebar {
+  position: fixed;
+  grid-column: 2;
+  margin: 2em;
   display: flex;
   align-self: baseline;
   flex-direction: column;
-  position: sticky;
   min-height: 15em;
   justify-content: space-between;
-  top: 2em;
-  gap: 5px;
   background-color: #50577a;
   padding: 0.75em;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px 3px #191b24b2;
+  box-shadow: 3px 3px 3px 3px #191b24;
 }
 
 .linksContainer {
