@@ -13,7 +13,6 @@
 .operationinfo {
   display: flex;
   flex-direction: column;
-  width: 90%;
   align-items: center;
   /* background-color: #50577A; */
   background-color: #50577a;
