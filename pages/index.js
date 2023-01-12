@@ -21,7 +21,7 @@ export async function getServerSideProps({ req, res }) {
 
 export default function UpcomingOperations({ data }) {
   const [filters, setFilters] = useState([]);
-  const [imageUrls, setImageUrls] = useState()
+  const [imageUrls, setImageUrls] = useState({})
 
   const curTime = new Date();
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function UpcomingOperations({ data }) {
     if (endTime < curTime && parameters?.history !== "1") return "";
 
     if (!filters.length || filters.includes(event.slug)) {
-      return <Event key={event.id} event={event} imageUrls={imageUrls} />;
+      return <Event key={event.id} event={event} imageUrl={event.id in imageUrls ? imageUrls[event.id] : null} />;
     }
   });
 
