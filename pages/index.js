@@ -30,9 +30,10 @@ export default function UpcomingOperations({ data }) {
   // A hacky fix for the broken image links from raid-helper API
   useEffect(() => {
     const getImages = async () => {
+      const _curTime = new Date();
       for(const event of data) {
         const endTime = new Date(event.endTime * 1000);
-        if (endTime > curTime) {
+        if (endTime > _curTime) {
           const request = await fetch (`https://raid-helper.dev/api/event/${event.id}`);
           const json = await request.json();
           
@@ -47,7 +48,7 @@ export default function UpcomingOperations({ data }) {
     }
 
     getImages();
-  }, [])
+  }, [data])
 
   if (!data) return <p>No data</p>;
 
