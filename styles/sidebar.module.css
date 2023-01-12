@@ -55,6 +55,7 @@
 
 .filter img {
   width: 36px;
+  aspect-ratio: 1;
   height: auto;
   border: 2px solid #00000000;
   border-radius: 9999px;
@@ -86,7 +87,7 @@
   gap: 5px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .sidebar {
     display: none;
   }
