@@ -1,7 +1,7 @@
 import Layout from "../components/layout";
 import Head from "next/head";
 import style from "../components/upcomingops.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Event from "../components/event";
 import { getEventData } from "../lib/eventData";
 import { useRouter } from "next/router";
@@ -21,10 +21,33 @@ export async function getServerSideProps({ req, res }) {
 
 export default function UpcomingOperations({ data }) {
   const [filters, setFilters] = useState([]);
+  const [imageUrls, setImageUrls] = useState()
 
   const curTime = new Date();
   const router = useRouter();
   const parameters = router.query;
+
+  // A hacky fix for the broken image links from raid-helper API
+  useEffect(() => {
+    const getImages = async () => {
+      for(const event of data) {
+        const endTime = new Date(event.endTime * 1000);
+        if (endTime > curTime) {
+          const request = await fetch (`https://raid-helper.dev/api/event/${event.id}`);
+          const json = await request.json();
+          
+          setImageUrls((prevState) => {
+            return {
+              ...prevState,
+              [event.id]: json.advanced.image,
+            }
+          });
+        }
+      }
+    }
+
+    getImages();
+  }, [])
 
   if (!data) return <p>No data</p>;
 
@@ -47,7 +70,7 @@ export default function UpcomingOperations({ data }) {
     if (endTime < curTime && parameters?.history !== "1") return "";
 
     if (!filters.length || filters.includes(event.slug)) {
-      return <Event key={event.id} event={event} />;
+      return <Event key={event.id} event={event} imageUrls={imageUrls} />;
     }
   });
 

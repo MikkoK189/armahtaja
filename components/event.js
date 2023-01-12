@@ -4,13 +4,13 @@ import { Remark } from "react-remark"
 import style from "./upcomingops.module.css";
 import { getOperationDateString, getOperationTimeString } from "../lib/ops";
 
-export default function Event({ event }) {
+export default function Event({ event, imageUrls }) {
     return (
         <div className={style.operationinfo}>
         {event.imageUrl ? (
         <Image
             className={style.img}
-            src={event.imageUrl}
+            src={imageUrls ? imageUrls[event.id] : event.imageUrl}
             alt="Operation image"
             width={1000}
             height={300}
