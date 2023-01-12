@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
     "Cache-Control",
-    "public, s-maxage=1800, stale-while-revalidate=3600"
+    "public, s-maxage=3600, stale-while-revalidate=7200"
   );
 
   const eventData = await getEventData();
