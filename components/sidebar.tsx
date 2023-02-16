@@ -4,8 +4,22 @@ import Image from "next/image";
 import sidebarStyle from "../styles/sidebar.module.css";
 import Link from "next/link";
 
-export default function Sidebar(props) {
-  const [data, setData] = useState(null);
+
+type SidebarProps = {
+  activeFilters?: string[];
+  filterFunction?: Function;
+  home: boolean;
+}
+
+type DataItem = {
+  serverId: string;
+  slug: string;
+  logoUrl: string;
+  name: string;
+}
+
+export default function Sidebar(props: SidebarProps) {
+  const [data, setData] = useState<DataItem[]|null>(null);
 
   const currentPage = useRouter().query;
   const activeFilters = props.activeFilters || [];
@@ -62,7 +76,7 @@ export default function Sidebar(props) {
               : sidebarStyle.filter
           }
           onClick={() => {
-            applyFilter(communityData.slug);
+            if(applyFilter) applyFilter(communityData.slug);
           }}
         >
           <Image
@@ -101,4 +115,5 @@ export default function Sidebar(props) {
       </aside>
     );
   }
+  return <div></div>
 }

@@ -2,9 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { Remark } from "react-remark"
 import style from "./upcomingops.module.css";
+import { EventInterface } from "../lib/eventData";
 import { getOperationDateString, getOperationTimeString } from "../lib/ops";
 
-export default function Event({ event, imageUrl }) {
+type Event = {
+    event: EventInterface,
+    imageUrl: string | null | undefined;
+}
+
+
+export default function Event({ event, imageUrl } : Event) {
     return (
         <div className={style.operationinfo}>
         {event.imageUrl ? (
@@ -41,6 +48,5 @@ export default function Event({ event, imageUrl }) {
             <Remark>{event.description}</Remark>
         </div>
         </div>
-    </div>
-    );
+    </div>);
 }

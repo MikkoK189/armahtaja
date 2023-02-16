@@ -1,18 +1,28 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { ReactElement, useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 
-export default function Layout({
+type LayoutProps = {
+  children?: ReactElement[] | null;
+  home: boolean;
+  filterFunction?: Function;
+  activeFilters?: string[];
+}
+
+type Data = {
+  directory: string;
+}
+
+export default function Layout ({
   children,
   home,
   filterFunction,
   activeFilters,
-}) {
-  const [data, setData] = useState(null);
+} : LayoutProps) {
+  const [data, setData] = useState<Data|null>(null);
 
   useEffect(() => {
     // declare the async data fetching function
-    const fetchData = async () => {
+    const fetchData  = async () => {
       // get the data from the api
       const data = await fetch("/api/background");
       const json = await data.json();
@@ -49,4 +59,6 @@ export default function Layout({
       </div>
     );
   }
+
+  return <div>{children}</div>
 }

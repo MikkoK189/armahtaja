@@ -1,12 +1,13 @@
 import Layout from "../components/layout";
 import Head from "next/head";
 import style from "../components/upcomingops.module.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import Event from "../components/event";
-import { getEventData } from "../lib/eventData";
+import { EventInterface, getEventData } from "../lib/eventData";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
-export async function getServerSideProps({ req, res }) {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   res.setHeader(
     "Cache-Control",
     "public, s-maxage=3600, stale-while-revalidate=7200"
@@ -19,9 +20,19 @@ export async function getServerSideProps({ req, res }) {
   };
 }
 
-export default function UpcomingOperations({ data }) {
-  const [filters, setFilters] = useState([]);
-  const [imageUrls, setImageUrls] = useState({})
+
+type UpcomingOperationsParams = {
+  data: EventInterface[];
+}
+
+interface ImageUrls {
+  [key: string]: string | undefined
+}
+
+
+export default function UpcomingOperations({ data }: UpcomingOperationsParams) {
+  const [filters, setFilters] = useState<string[]>([]);
+  const [imageUrls, setImageUrls] = useState<ImageUrls>({})
 
   const curTime = new Date();
   const router = useRouter();
@@ -52,15 +63,15 @@ export default function UpcomingOperations({ data }) {
 
   if (!data) return <p>No data</p>;
 
-  const applyFilters = function (filter) {
+  const applyFilters = function (filter : string) {
     if (filters.includes(filter)) {
       const idx = filters.indexOf(filter);
 
-      setFilters((prevState, newState) => {
+      setFilters((prevState : string[]) => {
         return [...prevState.slice(0, idx), ...prevState.slice(idx + 1)];
       });
     } else {
-      setFilters((prevState, newState) => {
+      setFilters((prevState : string[]) => {
         return [...prevState, filter];
       });
     }
