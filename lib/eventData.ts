@@ -1,10 +1,23 @@
 import { getAllCommunities } from "./communities";
 
-export async function getEventData() {
+export interface EventInterface {
+  serverName: string;
+  serverId: string;
+  slug: string;
+  startTime: number;
+  id: string;
+  endTime: number;
+  imageUrl: string;
+  title: string;
+  signUpsAmount: number;
+  description: string;
+}
+
+export async function getEventData() : Promise<EventInterface[]> {
   const serverData = await getAllCommunities();
 
-  const eventData = [];
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const eventData = <EventInterface[]>[];
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
   const beginTime = Date.now()
   let iterator = 0;
 
@@ -14,7 +27,7 @@ export async function getEventData() {
       {
         method: "post",
         headers: new Headers({
-          Authorization: process.env[server.slug],
+          Authorization: String(process.env[server.slug]),
         }),
       }
     );
@@ -22,10 +35,10 @@ export async function getEventData() {
     console.log(json);
     
     iterator++;
-    const upcomingEvents = [];
+    const upcomingEvents = <EventInterface[]>[];
 
     if (json.postedEvents?.length > 0) {
-      json.postedEvents.forEach((event) => {
+      json.postedEvents.forEach((event : EventInterface) => {
         event.serverName = server.name;
         event.serverId = server.serverId;
         event.slug = server.slug;
