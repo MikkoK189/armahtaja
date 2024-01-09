@@ -4,8 +4,8 @@ export default function Component() {
   if (session) {
     return (
       <>
-        Signed in as {session.user?.name} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        Kirjaunut sisään {session.user?.name} <br />
+        <button onClick={() => signOut()}>Kirjaudu ulos</button>
       </>
     )
   }

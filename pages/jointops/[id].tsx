@@ -1,8 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 import { getOperationData, getOperationPaths } from '../../lib/jointops';
+import Header from '../../components/header';
+import Layout from '../../components/layout';
 
 type Slot = {
+    id: string;
     title: string;
     participant: string;
     accepted: boolean;
@@ -42,10 +45,13 @@ export const getStaticPaths : GetStaticPaths = async () => {
 
 const JointOpsPage = (props: JointOperationData) => {
     return (
-        <div>
+        <Layout 
+            home={false}
+            hideFilters={true}
+        >
             <h1>{ props.title }</h1>
-            { props.content }
-
+            <p>{ props.content }</p>
+            <div>
             {props.groups.map((group) => {
                 return (
                     <div key={group.id}>
@@ -53,7 +59,7 @@ const JointOpsPage = (props: JointOperationData) => {
                         <ul>
                             {group.slots.map((slot) => {
                                 return (
-                                    <li key={slot.title}>
+                                    <li key={slot.id}>
                                         {slot.title} - {slot.participant}
                                     </li>
                                 );
@@ -62,7 +68,8 @@ const JointOpsPage = (props: JointOperationData) => {
                     </div>
                 );
             })}
-        </div>
+            </div>
+        </Layout>
     );
 };
 

@@ -32,7 +32,6 @@ export async function getEventData() : Promise<EventInterface[]> {
       }
     );
     const json = await request.json();
-    console.log(json);
     
     iterator++;
     const upcomingEvents = <EventInterface[]>[];

@@ -1,11 +1,13 @@
 import { ReactElement, useEffect, useState } from "react";
 import Sidebar from "./sidebar";
+import Header from "./header";
 
 type LayoutProps = {
   children?: ReactElement[] | null;
   home: boolean;
   filterFunction?: Function;
   activeFilters?: string[];
+  hideFilters?: Boolean
 }
 
 type Data = {
@@ -17,6 +19,7 @@ export default function Layout ({
   home,
   filterFunction,
   activeFilters,
+  hideFilters
 } : LayoutProps) {
   const [data, setData] = useState<Data|null>(null);
 
@@ -45,15 +48,17 @@ export default function Layout ({
       style={{
         backgroundImage: `url(${randomBg})`,
       }}>
-        <Sidebar
-          home={home}
-          filterFunction={filterFunction}
-          activeFilters={activeFilters}
-        />
-
+        <Header />
+        {!hideFilters &&
+          <Sidebar
+            home={home}
+            filterFunction={filterFunction}
+            activeFilters={activeFilters}
+          />
+        }
         {children}
         <footer className="footer">
-          Haluatko yhteisösi mukaan listaukseen? Ota yhteys MikkoK#8632
+          Haluatko yhteisösi mukaan listaukseen? Ota yhteys mikkok
           Discordissa.
         </footer>
       </div>
