@@ -6,7 +6,10 @@
     display: flex;
     flex-direction: row;
     background-color: black;
-    justify-content: space-between;
+    align-items: flex-end;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
 }
 
 .login {
@@ -14,4 +17,17 @@
     gap: 1rem;
     align-items: center;
     flex-direction: row;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline;
 }

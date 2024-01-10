@@ -36,7 +36,6 @@ export async function getOperationData(id : string) {
                 } 
             }
         });
-        console.log(operationData)
         return operationData
     } catch (error) {
         console.error('Error retrieving operation data:', error);

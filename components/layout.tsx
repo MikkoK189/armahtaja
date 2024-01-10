@@ -3,11 +3,12 @@ import Sidebar from "./sidebar";
 import Header from "./header";
 
 type LayoutProps = {
-  children?: ReactElement[] | null;
+  children?: JSX.Element[] | JSX.Element | null;
   home: boolean;
   filterFunction?: Function;
   activeFilters?: string[];
-  hideFilters?: Boolean
+  hideFilters?: Boolean;
+  staticBackground?: Boolean;
 }
 
 type Data = {
@@ -19,7 +20,8 @@ export default function Layout ({
   home,
   filterFunction,
   activeFilters,
-  hideFilters
+  hideFilters,
+  staticBackground
 } : LayoutProps) {
   const [data, setData] = useState<Data|null>(null);
 
@@ -41,7 +43,8 @@ export default function Layout ({
   }, []);
 
   if (data) {
-    const randomBg =
+    const randomBg = staticBackground ? 
+      data.directory[1] :
       data.directory[Math.floor(Math.random() * data.directory.length)];
     return (
       <div className="layout" 

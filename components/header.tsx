@@ -8,9 +8,14 @@ export default function Header() {
     return (
     <header className={headerStyle.header}>
         {user.admin &&
-            <Link href={'/admin'}
-            >Test</Link>
-        }
+        <div className={headerStyle.buttons}>
+            <Link 
+                href={'/admin'}
+                className={headerStyle.link}
+                >
+                Hallinta
+            </Link>
+        </div>}
         <Login />
     </header>
     )
