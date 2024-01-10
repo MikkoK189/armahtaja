@@ -1,7 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 import { getOperationData, getOperationPaths } from '../../lib/jointops';
-import Header from '../../components/header';
 import Layout from '../../components/layout';
 
 type Slot = {
