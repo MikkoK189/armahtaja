@@ -4,3 +4,7 @@
     align-items: center;
     width: 100vw;
 }
+
+.editor {
+    background-color: white;
+}

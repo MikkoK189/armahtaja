@@ -4,6 +4,8 @@ import { getOperationData, getOperationPaths } from '../../lib/jointops';
 import Layout from '../../components/layout';
 import router from 'next/router';
 import { useUser } from '../../contexts/UserContext';
+import dynamic from 'next/dynamic';
+import { Remark } from "react-remark"
 
 type Slot = {
     id: string;
@@ -24,6 +26,8 @@ interface JointOperationData {
     content: string;
     groups: Group[];
 }
+
+const Editor = dynamic(() => import('../../components/Editor'), { ssr: false })
 
 export const getStaticProps : GetStaticProps = async ({ params } ) => {
     const data = await getOperationData(String(params?.id));
@@ -47,7 +51,6 @@ export const getStaticPaths : GetStaticPaths = async () => {
 const JointOpsPage = (props: JointOperationData) => {
     const { admin, id } = useUser();
     const [operation, setOperation ] = useState<JointOperationData>(props)
-
     useEffect(() => {
         if (!admin) {
             router.push('/');
@@ -72,16 +75,19 @@ const JointOpsPage = (props: JointOperationData) => {
             hideFilters={true}
             staticBackground={true}
         >
+            
             <form>
                 <input 
                     type="text"
                     value={operation.title}
                     onChange={(e) => setOperation((prev) => ({ ...prev, title: e.target.value }))}
-                ></input>
+                />
+                <Editor content={operation.content}
+                onChange={(e: any) => setOperation((prev) => ({ ...prev, content: e }))} />
             </form>
             <div>
                 <h1>{ operation.title }</h1>
-                <p>{ operation.content }</p>
+                <Remark>{operation.content}</Remark>
                 <div>
                 {operation.groups.map((group) => {
                     return (
