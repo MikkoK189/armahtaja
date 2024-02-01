@@ -3,8 +3,20 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
+    gap: 5rem;
+
 }
 
+.container form {
+    width: 50%
+}
+
+.groupContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
 .editor {
     background-color: white;
 }
